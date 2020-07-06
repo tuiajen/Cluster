@@ -8,6 +8,16 @@ library(Rtsne)
 #' Load data
 df <- read.csv("pt.csv")
 
+#dataframe columnes must be factors so check it.
+lapply(df,class)
+
+#change all columns to factors.
+colnames <-names(df)
+df[,colnames] <- lapply(df[,colnames],factor)
+
+#did it work?
+lapply(df,class)
+
 #' Compute Gower distance
 gower_dist <- daisy(df, metric = "gower")
 
